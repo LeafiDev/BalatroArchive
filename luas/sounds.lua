@@ -1,14 +1,49 @@
 -- musics
 
+SMODS.Sound {
+    key = "music_challenges",          
+    path = "music_challenges.ogg",        
+    volume = 0.5,                        
+    pitch = 1,
+    select_music_track = function(self)
+        if G.CHALLENGE_LIST_SHOWING == true and false == true then -- sneaky lock
+            return 99999
+        end
+    end                   
+}
 
 SMODS.Sound {
     key = "music_win",          
     path = "music_win.ogg",        
-    volume = 0.7,                        
+    volume = 0.4,
     pitch = 1,
     select_music_track = function(self)
-	if G.STATE == 8 and G.GAME.won and G.GAME.round_resets.ante == 9 then
-        return true
+	if G.WIN_SCREEN_SHOWING then
+        return 9999
+    end
+end                   
+}
+
+SMODS.Sound {
+    key = "music_loss",          
+    path = "music_loss.ogg",        
+    volume = 0.4,  -- Keep volume at normal level                     
+    pitch = 1,     -- Set to normal pitch (1) instead of 2 to prevent pitch down
+    select_music_track = function(self)
+        if G.STATE == G.STATES.GAME_OVER then
+            return 9999
+        end
+    end                   
+}
+
+SMODS.Sound {
+    key = "music_binah",          
+    path = "music_binah.ogg",        
+    volume = 0.4,                        
+    pitch = 1,
+    select_music_track = function(self)
+	if G.BA_BINAH_PHASE and G.BA_BINAH_PHASE == 1 then
+        return 9999
     end
 end                   
 }
@@ -16,10 +51,10 @@ end
 SMODS.Sound {
     key = "music_tiph1",          
     path = "music_tiph1.ogg",        
-    volume = 1,                        
+    volume = 0.4,                        
     pitch = 1,
     select_music_track = function(self)
-	if G and G.GAME and G.GAME.blind and G.GAME.blind.name and G.GAME.blind.name == "bl_ba_tiphareth" and G.GAME.chips <= G.GAME.blind.chips / 2 then
+	if G.BA_TIPHARETH_PHASE and G.BA_TIPHARETH_PHASE == 1 then
         return 9999
     end
 end                   
@@ -28,30 +63,19 @@ end
 SMODS.Sound {
     key = "music_tiph2",          
     path = "music_tiph2.ogg",        
-    volume = 1,                        
+    volume = 0.4,                        
     pitch = 1,
     select_music_track = function(self)
-	if G and G.GAME and G.GAME.blind and G.GAME.blind.name and G.GAME.blind.name == "bl_ba_tiphareth" and G.GAME.chips >= G.GAME.blind.chips / 2 then
+	if G.BA_TIPHARETH_PHASE and G.BA_TIPHARETH_PHASE == 2 then
         return 9999
     end
 end                   
 }
 
+
 SMODS.Sound {
-    key = "music_none",          
-    path = "music_tiph2.ogg",        
-    volume = 0,                        
-    pitch = 0.1,
-    select_music_track = function(self)
-    if not timer then
-        timer = 0
-    end
-	if timer and G and G.GAME and G.GAME.blind and G.GAME.blind.name and G.GAME.blind.name == "bl_ba_tiphareth" and G.GAME.chips >= G.GAME.blind.chips / 2 then
-        timer = (timer or 0) + 1
-        if G.GAME.chips >= G.GAME.blind.chips / 2 and timer > (3 - (G.GAME.chips / G.GAME.blind.chips * 10)) then
-            G.GAME.chips = G.GAME.chips - 1
-            timer = 0
-        end
-    end
-end                   
+    key = "winsfx",          
+    path = "winsfx.ogg",        
+    volume = 1,                        
+    pitch = 1          
 }

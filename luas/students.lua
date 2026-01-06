@@ -1,4 +1,34 @@
 
+
+
+
+-- UI
+SMODS.Joker {
+    key = "rin",
+    atlas = "rin",
+    loc_txt = {
+        name = "Nanagami Rin",
+        text = {"Let's get started."}
+    },
+    discovered = true,
+    unlocked = true,
+    no_collection = true,
+    blueprint_compat = false,
+    rarity = 1,
+    cost = 1,
+    pos = { x = 0, y = 0 },
+    config = {  },
+    set_badges = function(self, card, badges)
+        badges[#badges+1] = create_badge("GENERAL STUDENT COUNCIL", G.C.BLUE, G.C.WHITE, 1.2 )
+    end,
+    in_pool = function(self)
+        return false
+    end
+}
+
+
+
+-- jokers
 SMODS.Joker {
     key = "shiroko",
     atlas = "shiroko",
