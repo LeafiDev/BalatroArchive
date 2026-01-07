@@ -140,3 +140,12 @@ SMODS.Atlas {
     py = 34,
     frames = 21
 }
+
+SMODS.Atlas {
+	key = "greg",
+	path = "greg.png",
+	atlas_table = "ANIMATION_ATLAS",
+    px = 34, 
+    py = 34,
+    frames = 6
+}

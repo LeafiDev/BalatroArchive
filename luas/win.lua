@@ -17,6 +17,7 @@ function create_UIBox_win()
     local t = {
         n = G.UIT.ROOT,
         config = {
+            id = 'you_win_UI',
             align = "cm",
             colour = eased_black,
             padding = 0,

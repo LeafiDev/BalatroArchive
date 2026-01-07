@@ -6,7 +6,7 @@ SMODS.Sound {
     volume = 0.5,                        
     pitch = 1,
     select_music_track = function(self)
-        if G.CHALLENGE_LIST_SHOWING == true and false == true then -- sneaky lock
+        if G.CHALLENGE_LIST_SHOWING == true then -- sneaky lock
             return 99999
         end
     end                   
@@ -19,6 +19,7 @@ SMODS.Sound {
     pitch = 1,
     select_music_track = function(self)
 	if G.WIN_SCREEN_SHOWING then
+        G.BA_TIMER.active = false
         return 9999
     end
 end                   
@@ -43,6 +44,18 @@ SMODS.Sound {
     pitch = 1,
     select_music_track = function(self)
 	if G.BA_BINAH_PHASE and G.BA_BINAH_PHASE == 1 then
+        return 9999
+    end
+end                   
+}
+
+SMODS.Sound {
+    key = "music_greg",          
+    path = "music_greg.ogg",        
+    volume = 0.4,                        
+    pitch = 1,
+    select_music_track = function(self)
+	if G.BA_GREG_PHASE and G.BA_GREG_PHASE == 1 then
         return 9999
     end
 end                   

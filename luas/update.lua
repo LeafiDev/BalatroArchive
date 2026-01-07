@@ -16,8 +16,6 @@ local function create_timer_ui()
     local time_color = G.C.WHITE
     if G.BA_TIMER.time <= 10 then
         time_color = G.C.RED
-    elseif G.BA_TIMER.time <= 30 then
-        time_color = G.C.ORANGE
     end
     
     -- Format time as MM:SS.mmm
@@ -80,7 +78,7 @@ end
 
 G.archive_update = function(dt)
 
-    if not (G and G.GAME) then return end
+    if not (G) then return end
 
     -- Check if win screen is showing
     if G.OVERLAY_MENU and G.OVERLAY_MENU.definition and G.OVERLAY_MENU.definition.config and G.OVERLAY_MENU.definition.config.id == 'you_win_UI' then
@@ -90,14 +88,15 @@ G.archive_update = function(dt)
     end
     
     -- Check if challenge list is open
-    if G and G.OVERLAY_MENU and G.OVERLAY_MENU.definition and G.OVERLAY_MENU.definition.config and G.OVERLAY_MENU.definition.config.id == 'ba_challenge_list' then
+    local challenge_list_open = G and G.OVERLAY_MENU and G.OVERLAY_MENU.definition and G.OVERLAY_MENU.definition.config and G.OVERLAY_MENU.definition.config.id == 'ba_challenge_list'
+    
+    if challenge_list_open then
         if not G.CHALLENGE_LIST_SHOWING then
             -- Just opened - fade background to dark blue
             G.CHALLENGE_LIST_SHOWING = true
             G.E_MANAGER:add_event(Event({
                 func = function()
                     ease_background_colour{new_colour = {0.1, 0.2, 0.4, 1}, contrast = 2}
-
                 end
             }))
         end
@@ -127,7 +126,6 @@ G.archive_update = function(dt)
             G.E_MANAGER:add_event(Event({
                 func = function()
                     ease_background_colour{new_colour = G.C.DYN_UI.MAIN or {0.15, 0.15, 0.15, 1}, contrast = 2}
-
                 end
             }))
         end
@@ -152,6 +150,7 @@ G.archive_update = function(dt)
         end
     end
 
+    if not G.WIN_SCREEN_SHOWING == true then
     if G.GAME.blind and G.GAME.blind.name == "bl_ba_tiphareth" then
         -- Timer configuration for Tiphareth
         if not G.BA_TIMER.active and G.STATE == G.STATES.BLIND_SELECT then
@@ -190,7 +189,14 @@ G.archive_update = function(dt)
         -- Timer configuration for Binah
         if not G.BA_TIMER.active and G.STATE == G.STATES.BLIND_SELECT then
             G.BA_BINAH_PHASE = 1
-            G.BA_TIMER.time = 300  -- 5 minutes
+            G.BA_TIMER.time = 180  -- 3 minutes
+            G.BA_TIMER.active = true
+        end
+    elseif G.GAME.blind and G.GAME.blind.name == "bl_ba_greg" then
+        -- Timer configuration for greg
+        if not G.BA_TIMER.active and G.STATE == G.STATES.BLIND_SELECT then
+            G.BA_GREG_PHASE = 1
+            G.BA_TIMER.time = 240  -- 3 minutes
             G.BA_TIMER.active = true
         end
     else
@@ -200,7 +206,9 @@ G.archive_update = function(dt)
         G.BA_TIPHARETH_LAST_PHASE = nil
         G.BA_BINAH_PHASE = nil
         G.BA_BINAH_LAST_PHASE = nil
+        G.BA_GREG_PHASE = nil
     end
+end
 
     -- Check if already in game over state and deactivate timer
     if G.STATE == G.STATES.GAME_OVER then

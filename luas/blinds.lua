@@ -30,7 +30,7 @@ SMODS.Blind {
     pos = {x = 0, y = 0},
     loc_txt = {
         name = "Binah",
-        text = {"Permanently decreases chip value", "by half for each in hand card."}
+        text = {"Permanently decreases chip value", "by 2 for each in hand card."}
     },
     boss = { min = 8, showdown = true },
     dollars = 12,
@@ -43,7 +43,69 @@ SMODS.Blind {
 
     press_play = function(self, cards, hand, handname, check)
         for _, card in ipairs(G.hand.cards) do
-            card.ability.perma_bonus = (card.ability.perma_bonus or 2) / 2 
+            card.ability.perma_bonus = (card.ability.perma_bonus or 2) - 2
+            card:juice_up()
+        end
+    end
+}
+
+SMODS.Blind {
+    key = "binah",
+    atlas = "binah",
+    pos = {x = 0, y = 0},
+    loc_txt = {
+        name = "Binah",
+        text = {"Permanently decreases chip value", "by 2 for each in hand card."}
+    },
+    boss = { min = 8, showdown = true },
+    dollars = 12,
+    mult = 10,
+    boss_colour = HEX('331852'), 
+
+    set_blind = function(self)
+        -- Timer is handled automatically in update.lua
+    end,
+
+    press_play = function(self, cards, hand, handname, check)
+        for _, card in ipairs(G.hand.cards) do
+            card.ability.perma_bonus = (card.ability.perma_bonus or 2) - 2
+            card:juice_up()
+        end
+    end
+}
+
+SMODS.Blind {
+    key = "greg",
+    atlas = "greg",
+    pos = {x = 0, y = 0},
+    loc_txt = {
+        name = "Gregorious",
+        text = {""}
+    },
+    boss = { min = 8, showdown = true },
+    dollars = 8,
+    mult = 10,
+    boss_colour = HEX('331852'), 
+
+    set_blind = function(self)
+        gregmode = 1
+    end,
+
+    press_play = function(self, cards, hand, handname, check)
+
+        -- actual actions
+        SMODS.juice_up_blind()
+        gregmode = math.random(1, 2)
+        if gregmode == 1 then
+            for _, card in ipairs(G.hand.cards) do
+            card.ability.perma_bonus = (card.ability.perma_bonus or 1) - 4
+            card:juice_up()
+            end
+        elseif gregmode == 2 then
+            for _, card in ipairs(G.hand.cards) do
+            card.ability.perma_bonus = math.abs((card.ability.perma_bonus or 1)) * 1.5
+            card:juice_up()
+            end
         end
     end
 }
