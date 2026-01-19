@@ -7,7 +7,7 @@ assert(SMODS.load_file('luas/students.lua'))()
 assert(SMODS.load_file('luas/update.lua'))()
 assert(SMODS.load_file('luas/win.lua'))()
 assert(SMODS.load_file('luas/gameover.lua'))()
-assert(SMODS.load_file('luas/challenge_list.lua'))()
+-- assert(SMODS.load_file('luas/challenge_list.lua'))()
 
 -- globals
 G.coreactive = 0

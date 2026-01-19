@@ -3,13 +3,6 @@
 -- UI
 
 SMODS.Atlas {
-    key = "ch_cg",
-    path = "ch_cg.png",
-    px = 800,
-    py = 562,
-}
-
-SMODS.Atlas {
     key = "rin",
     path = "rin.png",
     px = 71,

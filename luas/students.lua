@@ -561,7 +561,7 @@ SMODS.Joker {
     key = "Iroha",
     atlas = "students",
     loc_txt = {
-        name = "Iroha",
+        name = "Natsume Iroha",
         text = {"{X:chips,C:white}X11.5{} Chips", "{S:0.5,C:inactive}Tactical Support needs time to deploy{}", "{S:0.5,C:inactive}Activation time differs per student.{}"}
     },
     unlocked = true,
@@ -594,5 +594,63 @@ set_badges = function(self, card, badges)
         badges[#badges+1] = create_badge("Gehenna", G.C.RED, G.C.WHITE, 1.2 )
         badges[#badges+1] = create_badge("Pandemomium Society", G.C.UI.TEXT_INACTIVE, G.C.WHITE, 1 )
         badges[#badges+1] = create_badge("Tactical Support", G.C.CHIPS, G.C.WHITE, 1 )
+end
+}
+
+SMODS.Joker {
+    key = "Chiaki",
+    atlas = "students",
+    loc_txt = {
+        name = "Motomiya Chiaki",
+        text = {"{C:red}+14.5{} Mult"}
+    },
+    unlocked = true,
+    blueprint_compat = true,
+    rarity = "ba_star3",
+    cost = 5,
+    pos = { x = 0, y = 1 },
+    config = { },
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}}
+    end,
+    calculate = function(self, card, context)
+
+    if context.joker_main then
+    
+    end
+end,
+
+set_badges = function(self, card, badges)
+        badges[#badges+1] = create_badge("Gehenna", G.C.RED, G.C.WHITE, 1.2 )
+        badges[#badges+1] = create_badge("Pandemomium Society", G.C.UI.TEXT_INACTIVE, G.C.WHITE, 1 )
+end
+}
+
+SMODS.Joker {
+    key = "Satsuki",
+    atlas = "students",
+    loc_txt = {
+        name = "Kyougoku Satsuki",
+        text = {"{C:red}+8.7{} Mult", "{X:mult,C:white}X1.2{} Mult"}
+    },
+    unlocked = true,
+    blueprint_compat = true,
+    rarity = "ba_star3",
+    cost = 5,
+    pos = { x = 1, y = 1 },
+    config = { },
+    loc_vars = function(self, info_queue, card)
+        return { vars = {}}
+    end,
+    calculate = function(self, card, context)
+
+    if context.joker_main then
+        return {mult = 8.7, xmult = 1.2}
+    end
+end,
+
+set_badges = function(self, card, badges)
+        badges[#badges+1] = create_badge("Gehenna", G.C.RED, G.C.WHITE, 1.2 )
+        badges[#badges+1] = create_badge("Pandemomium Society", G.C.UI.TEXT_INACTIVE, G.C.WHITE, 1 )
 end
 }
