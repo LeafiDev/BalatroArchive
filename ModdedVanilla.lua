@@ -1,18 +1,24 @@
 -- files
 assert(SMODS.load_file('luas/atlas.lua'))()
-assert(SMODS.load_file('luas/blinds.lua'))()
+-- assert(SMODS.load_file('luas/blinds.lua'))()
 assert(SMODS.load_file('luas/rarities.lua'))()
 assert(SMODS.load_file('luas/sounds.lua'))()
 assert(SMODS.load_file('luas/students.lua'))()
-assert(SMODS.load_file('luas/update.lua'))()
-assert(SMODS.load_file('luas/win.lua'))()
-assert(SMODS.load_file('luas/gameover.lua'))()
+assert(SMODS.load_file('luas/backs.lua'))()
+assert(SMODS.load_file('luas/boosters.lua'))()
+-- assert(SMODS.load_file('luas/update.lua'))()
+-- assert(SMODS.load_file('luas/win.lua'))()
+-- assert(SMODS.load_file('luas/gameover.lua'))()
 -- assert(SMODS.load_file('luas/challenge_list.lua'))()
 
 -- globals
 G.coreactive = 0
 
 -- functions
+
+get_current_profile = function()
+	return G.PROFILES[G.SETTINGS.profile] or "not valid"
+end
 
 SMODS.Keybind{
     id = "testbind",

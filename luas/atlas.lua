@@ -3,6 +3,27 @@
 -- UI
 
 SMODS.Atlas {
+    key = "backs",           -- unique key for your atlas
+    path = "backs.png",-- relative path to your atlas image
+    px = 71,                          -- width of atlas image in pixels
+    py = 95,                          -- height of atlas image in pixels
+}
+
+SMODS.Atlas {
+    key = "boosters",           -- unique key for your atlas
+    path = "boosters.png",-- relative path to your atlas image
+    px = 71,                          -- width of atlas image in pixels
+    py = 95,                          -- height of atlas image in pixels
+}
+
+SMODS.Atlas {
+    key = "modicon",
+    path = "modicon.png",
+    px = 34,
+    py = 34
+}
+
+SMODS.Atlas {
     key = "rin",
     path = "rin.png",
     px = 71,
